@@ -45,9 +45,29 @@ Este archivo de configuración de Spring usa context:component-scan para indicar
    ```
 
 * EnglishSpellChecker y SpanishSpellChecker son los dos posibles candidatos a ser inyectados. Se debe seleccionar uno, u otro, mas NO ambos (habría conflicto de resolución de dependencias). Por ahora haga que se use EnglishSpellChecker.
- 
-```sh
 
+Procedemos a marcar `EnglishSpellChecker` y `SpanishSpellChecker` como Beans. Tal cual como dice el enunciado, tenemos dos implementaciones marcadas como `@Component`, lo que generará un problema porque Spring no sabrá cuál inyectar
+
+```sh
+@Component
+public class SpanishSpellChecker implements SpellChecker {
+
+	@Override
+	public String checkSpell(String text) {
+		return "revisando ("+text+") con el verificador de sintaxis del espanol";
+	}
+}
+```
+
+```sh
+@Component
+public class EnglishSpellChecker implements SpellChecker {
+
+	@Override
+	public String checkSpell(String text) {		
+		return "Checked with english checker:"+text;
+	}
+}
 ```
 
 5.	Haga un programa de prueba, donde se cree una instancia de GrammarChecker mediante Spring, y se haga uso de la misma:

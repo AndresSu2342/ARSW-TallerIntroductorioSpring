@@ -10,6 +10,4 @@ public class EnglishSpellChecker implements SpellChecker {
 	public String checkSpell(String text) {		
 		return "Checked with english checker:"+text;
 	}
-
-        
 }
